@@ -13,12 +13,12 @@ const appContainer = document.querySelector(`.app`);
 const rawTemplates = [...document.getElementById(`templates`).content.children];
 const orderedTemplates = SCREEN_ORDER.map((screenID)=> {
   let orderedTemplate;
-  rawTemplates.forEach((template) => {
-    if (template.id === screenID) {
-      orderedTemplate = template;
+  for (let i = 0; i < rawTemplates.length; i++) {
+    if (rawTemplates[i].id === screenID) {
+      orderedTemplate = rawTemplates[i];
+      break;
     }
-    return null;
-  });
+  }
   return orderedTemplate;
 });
 
