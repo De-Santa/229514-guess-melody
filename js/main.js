@@ -9,18 +9,9 @@ const SCREEN_ORDER = [
 const TOTAL_SCREENS = SCREEN_ORDER.length;
 
 const appContainer = document.querySelector(`.app`);
+const rawTemplates = document.getElementById(`templates`).content;
 
-const rawTemplates = [...document.getElementById(`templates`).content.children];
-const orderedTemplates = SCREEN_ORDER.map((screenID)=> {
-  let orderedTemplate;
-  for (let i = 0; i < rawTemplates.length; i++) {
-    if (rawTemplates[i].id === screenID) {
-      orderedTemplate = rawTemplates[i];
-      break;
-    }
-  }
-  return orderedTemplate;
-});
+const orderedTemplates = SCREEN_ORDER.map((screenID) => rawTemplates.getElementById(screenID));
 
 let currentScreen;
 
