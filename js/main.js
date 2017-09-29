@@ -11,7 +11,9 @@ const TOTAL_SCREENS = SCREEN_ORDER.length;
 const appContainer = document.querySelector(`.app`);
 const rawTemplates = document.getElementById(`templates`).content;
 
-const orderedTemplates = SCREEN_ORDER.map((screenID) => rawTemplates.getElementById(screenID));
+const orderedTemplates = SCREEN_ORDER.map((screenID) => {
+  return rawTemplates.getElementById(screenID);
+});
 
 let currentScreen;
 
