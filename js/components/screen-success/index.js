@@ -16,6 +16,8 @@ const screenTemplate = `
 
 const successScreen = parseScreenFromTemplate(screenTemplate);
 
-//successScreen.addEventListener(`click`, switchScreen(`main-replay`, successScreen, welcomeScreen));
+setTimeout(() => {
+  successScreen.addEventListener(`click`, switchScreen(`main-replay`, successScreen, welcomeScreen));
+}, 500);
 
 export default successScreen;

@@ -1,4 +1,4 @@
-import {parseScreenFromTemplate, switchScreen} from '../../helpers/index';
+import {parseScreenFromTemplate, switchScreen, renderScreen} from '../../helpers/index';
 import gameArtistScreen from '../screen-game-artist/index';
 
 const screenTemplate = `
@@ -15,6 +15,8 @@ const screenTemplate = `
 `;
 
 const welcomeScreen = parseScreenFromTemplate(screenTemplate);
+
+renderScreen(welcomeScreen);
 
 welcomeScreen.addEventListener(`click`, switchScreen(`main-play`, welcomeScreen, gameArtistScreen));
 

@@ -1,5 +1,5 @@
 import {parseScreenFromTemplate, switchScreen} from '../../helpers/index';
-//import welcomeScreen from '../screen-welcome/index';
+import welcomeScreen from '../screen-welcome/index';
 
 const screenTemplate = `
   <section id='fail-mistakes' class="main main--result">
@@ -13,6 +13,8 @@ const screenTemplate = `
 
 const failMistakesScreen = parseScreenFromTemplate(screenTemplate);
 
-//failMistakesScreen.addEventListener(`click`, switchScreen(`main-replay`, failMistakesScreen, welcomeScreen));
+setTimeout(() => {
+  failMistakesScreen.addEventListener(`click`, switchScreen(`main-replay`, failMistakesScreen, welcomeScreen));
+}, 500);
 
 export default failMistakesScreen;
