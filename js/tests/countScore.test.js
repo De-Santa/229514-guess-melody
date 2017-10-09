@@ -1,29 +1,28 @@
-/*eslint-disable */
 import assert from 'assert';
 import countScore from '../helpers/countScore'
 
 describe(`countScore function`, () => {
   it(`should return -1 if player answered less than 10 questions`, () => {
-    assert.equal(-1, countScore(test_answer_1));
+    assert.equal(-1, countScore(testAnswer1));
   });
   it(`should return 20 if player gave 10 fast answers and has 3 lives left`, () => {
-    assert.equal(20, countScore(test_answer_2));
+    assert.equal(20, countScore(testAnswer2));
   });
   it(`should return 0 if player gave 10 wrong answers and has 0 lives left`, () => {
-    assert.equal(0, countScore(test_answer_3));
+    assert.equal(0, countScore(testAnswer3));
   });
   it(`should return 7 if player gave 5 fast 3 slow 2 wrong answers and has 1 lives left`, () => {
-    assert.equal(7, countScore(test_answer_4));
+    assert.equal(7, countScore(testAnswer4));
   });
   it(`should return 11 if player gave 5 fast 4 slow 1 wrong answers and has 2 lives left`, () => {
-    assert.equal(11, countScore(test_answer_5));
+    assert.equal(11, countScore(testAnswer5));
   });
   it(`should return 10 if player gave 10 slow answers and has 3 lives left`, () => {
-    assert.equal(10, countScore(test_answer_6));
+    assert.equal(10, countScore(testAnswer6));
   });
 });
 
-const test_answer_1 = {
+const testAnswer1 = {
   answers: [
     {correct: true, time: 11},
     {correct: false, time: 32},
@@ -37,7 +36,7 @@ const test_answer_1 = {
   ],
   livesLeft: 3
 };
-const test_answer_2 = {
+const testAnswer2 = {
   answers: [
     {correct: true, time: 11},
     {correct: true, time: 29},
@@ -52,7 +51,7 @@ const test_answer_2 = {
   ],
   livesLeft: 3
 };
-const test_answer_3 = {
+const testAnswer3 = {
   answers: [
     {correct: false, time: 11},
     {correct: false, time: 32},
@@ -67,7 +66,7 @@ const test_answer_3 = {
   ],
   livesLeft: 0
 };
-const test_answer_4 = {
+const testAnswer4 = {
   answers: [
     {correct: true, time: 10},
     {correct: true, time: 28},
@@ -82,7 +81,7 @@ const test_answer_4 = {
   ],
   livesLeft: 1
 };
-const test_answer_5 = {
+const testAnswer5 = {
   answers: [
     {correct: true, time: 10},
     {correct: true, time: 28},
@@ -97,7 +96,7 @@ const test_answer_5 = {
   ],
   livesLeft: 2
 };
-const test_answer_6 = {
+const testAnswer6 = {
   answers: [
     {correct: true, time: 32},
     {correct: true, time: 33},

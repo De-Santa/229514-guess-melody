@@ -1,6 +1,5 @@
-/*eslint-disable */
 import assert from 'assert';
-import setTimer from '../helpers/setTimer'
+import setTimer from '../helpers/setTimer';
 
 const timer = setTimer(30);
 const timerValueAfterTick = timer.tick().value;
@@ -11,6 +10,6 @@ describe(`setTimer function`, () => {
     assert.equal(29, timerValueAfterTick);
   });
   it(`should return "time expired" message after time expires`, () => {
-    assert.equal('time expired', expired);
+    assert.equal(`time expired`, expired);
   });
 });
