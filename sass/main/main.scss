@@ -17,6 +17,9 @@
 .main-wrap {
   position: relative;
   z-index: 1;
+  .title {
+    text-align: center;
+  }
 }
 
 .logo {

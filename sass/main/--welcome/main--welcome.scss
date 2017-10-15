@@ -29,12 +29,10 @@
   transform-origin: center;
   transition: transform .3s linear;
   cursor: pointer;
-}
-
-.main-play:hover {
-  transform: scale(1.05);
-}
-
-.main-play:active {
-  transform: scale(1.04);
+  &:hover, &:active {
+    transform: scale(1.05);
+  }
+  &:focus {
+    outline: none;
+  }
 }
