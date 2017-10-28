@@ -1,7 +1,7 @@
 const appContainer = document.getElementById(`app`);
 
 const switchScreenView = (view) => {
-  appContainer.replaceChild(view.screenElement, appContainer.children[0]);
+  appContainer.replaceChild(view.element, appContainer.children[0]);
 };
 
 export default switchScreenView;

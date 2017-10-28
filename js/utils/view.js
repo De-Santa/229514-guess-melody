@@ -1,26 +1,26 @@
-import getScreen from './getScreen';
 
-class BaseScreenView {
+class BaseView {
 
-  get screenTemplate() {
+  get template() {
     throw new Error(`You have to define screen template for view`);
   }
 
-  screenRender() {
-    return getScreen(this.screenTemplate);
+  render() {
+    const parser = new DOMParser();
+    const result = parser.parseFromString(this.template, `text/html`);
+
+    return result.body.firstElementChild;
   }
 
-  setScreenEvents() {
+  bind() {}
 
-  }
-
-  get screenElement() {
-    if (!this._screenElement) {
-      this._screenElement = this.screenRender();
-      this.setScreenEvents();
+  get element() {
+    if (!this._element) {
+      this._element = this.render();
+      this.bind();
     }
-    return this._screenElement;
+    return this._element;
   }
 }
 
-export default BaseScreenView;
+export default BaseView;

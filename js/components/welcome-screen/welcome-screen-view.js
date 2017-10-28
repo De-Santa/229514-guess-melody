@@ -1,5 +1,5 @@
 import BaseScreenView from '../../utils/view';
-import gameLogo from '../gameLogo/gameLogo';
+import gameLogo from '../game-logo';
 
 class WelcomeScreenView extends BaseScreenView {
 
@@ -9,7 +9,7 @@ class WelcomeScreenView extends BaseScreenView {
     console.log(`this.gameState from welcome screen`, this.gameState);
   }
 
-  get screenTemplate() {
+  get template() {
     const {time, lives} = this.gameState;
 
     return `
@@ -26,8 +26,8 @@ class WelcomeScreenView extends BaseScreenView {
     `.trim();
   }
 
-  setScreenEvents() {
-    const playButton = this.screenElement.querySelector(`.main-play`);
+  bind() {
+    const playButton = this.element.querySelector(`.main-play`);
     playButton.addEventListener(`click`, () => {
       this.onGameStart();
     });
