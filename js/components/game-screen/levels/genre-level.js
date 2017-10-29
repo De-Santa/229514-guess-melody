@@ -38,27 +38,27 @@ class GenreLevel {
   }
 
   handleLevelActions(gameScreen, onAnswer) {
+    const answerCheckboxes = [...gameScreen.querySelectorAll(`input[name="answer"]`)];
+    const answerBtn = gameScreen.querySelector(`.genre-answer-send`);
+
     gameScreen.addEventListener(`change`, (event) => {
       if (event.target.name === `answer`) {
-        const answerBtn = gameScreen.querySelector(`.genre-answer-send`);
-        const answerCheckboxes = [...gameScreen.querySelectorAll(`input[name="answer"]`)];
-        answerBtn.disabled = !answerCheckboxes.some((answer) => answer.checked);
-        onAnswer(true, 1);
+        answerBtn.disabled = !answerCheckboxes.some((answer) => {
+          return answer.checked;
+        });
       }
     });
 
     gameScreen.addEventListener(`click`, (event) => {
       if (event.target.className === `genre-answer-send`) {
-        onAnswer(true, 1);
-        return false;
+        const answerIsCorrect = answerCheckboxes.reduce((result, answerCheckbox, i) => {
+          return result && answerCheckbox.checked === this.levelData.answers[i].correctAnswer;
+        }, true);
+        const answerTime = 5;
+        onAnswer(answerIsCorrect, answerTime);
       }
     });
   }
 }
-
-
-const getGenreUserAnswer = () => {
-  return false;
-};
 
 export default GenreLevel;

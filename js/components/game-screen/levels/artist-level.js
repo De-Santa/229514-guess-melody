@@ -40,10 +40,12 @@ class ArtistLevel {
   }
 
   handleLevelActions(gameScreen, onAnswer) {
+    const answerButtons = [...gameScreen.querySelectorAll(`.main-answer`)];
     gameScreen.addEventListener(`click`, (event) => {
       if (event.target.className === `main-answer`) {
-        const playerAnswer = event.target.getAttribute(`for`);
-        onAnswer(true, 1);
+        const answerIndex = answerButtons.indexOf(event.target);
+        const answerTime = 5;
+        onAnswer(this.levelData.answers[answerIndex].correctAnswer, answerTime);
       }
     });
   }
