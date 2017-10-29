@@ -1,5 +1,5 @@
 import assert from 'assert';
-import countScore from '../helpers/countScore'
+import countScore from '../helpers/countScore';
 
 describe(`countScore function`, () => {
   it(`should return -1 if player answered less than 10 questions`, () => {

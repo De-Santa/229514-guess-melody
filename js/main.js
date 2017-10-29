@@ -1,5 +1,4 @@
-import {renderScreen} from './helpers/index';
-import welcomeScreen from './components/screen-welcome/index';
+import switchScreen from './utils/switchScreen';
+import welcomeScreen from './components/welcome-screen/welcome-screen';
 
-
-renderScreen(welcomeScreen);
+switchScreen(welcomeScreen());
