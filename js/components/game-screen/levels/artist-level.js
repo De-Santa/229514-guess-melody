@@ -44,8 +44,11 @@ class ArtistLevel {
     gameScreen.addEventListener(`click`, (event) => {
       if (event.target.className === `main-answer`) {
         const answerIndex = answerButtons.indexOf(event.target);
-        const answerTime = 5;
-        onAnswer(this.levelData.answers[answerIndex].correctAnswer, answerTime);
+        const time = 5;
+        onAnswer({
+          isCorrect: this.levelData.answers[answerIndex].correctAnswer,
+          time
+        });
       }
     });
   }

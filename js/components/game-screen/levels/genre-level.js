@@ -54,8 +54,11 @@ class GenreLevel {
         const answerIsCorrect = answerCheckboxes.reduce((result, answerCheckbox, i) => {
           return result && answerCheckbox.checked === this.levelData.answers[i].correctAnswer;
         }, true);
-        const answerTime = 5;
-        onAnswer(answerIsCorrect, answerTime);
+        const time = 5;
+        onAnswer({
+          isCorrect: answerIsCorrect,
+          time
+        });
       }
     });
   }

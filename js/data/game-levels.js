@@ -44,7 +44,7 @@ const gameLevels = [
       }
     ]
   },
-/*
+
   {
     type: `artist`,
     audio: audio[5].src,
@@ -88,7 +88,7 @@ const gameLevels = [
       }
     ]
   },
-
+/*
   {
     type: `genre`,
     genre: `Jazz`,

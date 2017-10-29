@@ -1,5 +1,5 @@
 import BaseScreenView from '../../utils/view';
-import gameLevels from '../../data/gameLevels';
+import gameLevels from '../../data/game-levels';
 import mistakes from '../mistakes';
 import timer from '../timer';
 import GenreLevel from './levels/genre-level';
@@ -23,11 +23,11 @@ class GameScreenView extends BaseScreenView {
     const {gameState} = this;
     const levelData = gameLevels[gameState.currentLevel];
     return `
-    <section id="game-${levelData.type}" class="main main--level main--level-${levelData.type}">
-      ${timer(gameState.time)}
-      ${mistakes(gameState.lives)}
-      ${this.gameLevel.template}
-    </section>
+      <section id="game-${levelData.type}" class="main main--level main--level-${levelData.type}">
+        ${timer(gameState.time)}
+        ${mistakes(gameState.mistakes)}
+        ${this.gameLevel.template}
+      </section>
     `.trim();
   }
 
