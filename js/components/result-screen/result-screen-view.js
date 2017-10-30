@@ -50,7 +50,7 @@ class WelcomeScreenView extends BaseScreenView {
   get currentResultTemplate() {
     if (this.gameState.mistakes > gameData.MAX_MISTAKES) {
       return failMistakesTemplate;
-    } else if (this.gameState.time < 0) {
+    } else if (this.gameState.time === 0) {
       return failTimeoutTemplate;
     }
     return successTemplate(this.gameState);

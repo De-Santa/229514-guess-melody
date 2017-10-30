@@ -16,7 +16,7 @@ class GameScreenView extends BaseScreenView {
     this.gameState = gameState;
     this.levelData = gameLevels[gameState.currentLevel];
     const CurrentLevelConstructor = LEVELS[this.levelData.type];
-    this.gameLevel = new CurrentLevelConstructor(this.levelData);
+    this._gameLevel = new CurrentLevelConstructor(this.levelData);
   }
 
   get template() {
@@ -26,14 +26,23 @@ class GameScreenView extends BaseScreenView {
       <section id="game-${levelData.type}" class="main main--level main--level-${levelData.type}">
         ${timer(gameState.time)}
         ${mistakes(gameState.mistakes)}
-        ${this.gameLevel.template}
+        ${this._gameLevel.template}
       </section>
     `.trim();
   }
 
   bind() {
     const gameScreen = this.element;
-    this.gameLevel.handleLevelActions(gameScreen, this.onAnswer);
+    this._timerMins = gameScreen.querySelector(`.timer-value-mins`);
+    this._timerSecs = gameScreen.querySelector(`.timer-value-secs`);
+    this.updateTimer(this.gameState.time);
+
+    this._gameLevel.handleLevelActions(gameScreen, this.onAnswer);
+  }
+
+  updateTimer(seconds) {
+    this._timerMins.textContent = `0${seconds / 60 >> 0}`.slice(-2);
+    this._timerSecs.textContent = `0${seconds % 60}`.slice(-2);
   }
 
   onAnswer() {}
