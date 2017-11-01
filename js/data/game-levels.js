@@ -2,6 +2,27 @@ import audio from './audio';
 
 const gameLevels = [
   {
+    type: `artist`,
+    audio: audio[1].src,
+    answers: [
+      {
+        artist: audio[0].artist,
+        image: audio[0].image,
+        correctAnswer: false
+      },
+      {
+        artist: audio[1].artist,
+        image: audio[1].image,
+        correctAnswer: true
+      },
+      {
+        artist: audio[2].artist,
+        image: audio[2].image,
+        correctAnswer: false
+      }
+    ]
+  },
+  {
     type: `genre`,
     genre: `R&B`,
     answers: [
@@ -23,28 +44,6 @@ const gameLevels = [
       },
     ]
   },
-  {
-    type: `artist`,
-    audio: audio[1].src,
-    answers: [
-      {
-        artist: audio[0].artist,
-        image: audio[0].image,
-        correctAnswer: false
-      },
-      {
-        artist: audio[1].artist,
-        image: audio[1].image,
-        correctAnswer: true
-      },
-      {
-        artist: audio[2].artist,
-        image: audio[2].image,
-        correctAnswer: false
-      }
-    ]
-  },
-
   {
     type: `artist`,
     audio: audio[5].src,
