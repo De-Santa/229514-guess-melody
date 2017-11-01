@@ -1,4 +1,3 @@
-import switchScreen from './utils/switchScreen';
-import welcomeScreen from './components/welcome-screen/welcome-screen';
+import Application from './application';
 
-switchScreen(welcomeScreen());
+Application.showWelcome();
