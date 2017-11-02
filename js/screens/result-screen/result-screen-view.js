@@ -16,27 +16,26 @@ const failMistakesTemplate = `
 `;
 
 const successTemplate = (data) => {
-  console.log(data);
   const time = gameData.START_TIME - data.time;
-  const fastAnswers = data.answers.filter((answer) => {
-    return answer.time <= gameData.FAST_ANSWER_MAX_TIME;
+  const answersArray = data.answers.split(``);
+  const fastAnswers = answersArray.filter((answer) => {
+    return answer === `2`;
   }).length;
 
   return `
     <h2 class="title">Вы настоящий меломан!</h2>
     <div class="main-stat">За&nbsp;${(time - time % 60) / 60}&nbsp;минуты и ${time % 60}&nbsp;секунд
-      <br />вы&nbsp;набрали ${countScore(data.answers)} баллов (${fastAnswers} быстрых)
+      <br />вы&nbsp;набрали ${countScore(answersArray)} баллов (${fastAnswers} быстрых)
       <br />совершив ${data.mistakes} ошибки</div>
     <span class="main-comparison">Вы заняли 2 место из 10. Это&nbsp;лучше чем у&nbsp;80%&nbsp;игроков</span>
     <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
   `;
 };
 
-class WelcomeScreenView extends BaseScreenView {
-
-  constructor(gameState) {
+class ResultScreenView extends BaseScreenView {
+  constructor(data) {
     super();
-    this.gameState = gameState;
+    this.data = data;
   }
 
   get template() {
@@ -49,12 +48,12 @@ class WelcomeScreenView extends BaseScreenView {
   }
 
   get currentResultTemplate() {
-    if (this.gameState.mistakes > gameData.MAX_MISTAKES) {
+    if (this.data.mistakes > gameData.MAX_MISTAKES) {
       return failMistakesTemplate;
-    } else if (this.gameState.time === 0) {
+    } else if (this.data.time === 0) {
       return failTimeoutTemplate;
     }
-    return successTemplate(this.gameState);
+    return successTemplate(this.data);
   }
 
   bind() {
@@ -67,4 +66,4 @@ class WelcomeScreenView extends BaseScreenView {
   onGameRestart() {}
 }
 
-export default WelcomeScreenView;
+export default ResultScreenView;
