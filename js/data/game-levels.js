@@ -23,25 +23,24 @@ const gameLevels = [
     ]
   },
   {
-    type: `genre`,
-    genre: `R&B`,
+    type: `artist`,
+    audio: audio[1].src,
     answers: [
       {
-        audio: audio[3].src,
+        artist: audio[0].artist,
+        image: audio[0].image,
+        correctAnswer: false
+      },
+      {
+        artist: audio[1].artist,
+        image: audio[1].image,
         correctAnswer: true
       },
       {
-        audio: audio[2].src,
+        artist: audio[2].artist,
+        image: audio[2].image,
         correctAnswer: false
-      },
-      {
-        audio: audio[4].src,
-        correctAnswer: false
-      },
-      {
-        audio: audio[5].src,
-        correctAnswer: false
-      },
+      }
     ]
   },
   {

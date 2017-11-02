@@ -29,13 +29,11 @@ class GameScreen {
 
   gameOver() {
     clearTimeout(this._intervalId);
-    Application.showStats({
-      answers: this.model.answers,
+    Application.showStats(JSON.stringify({
+      answers: this.model.answersString,
       mistakes: this.model.state.mistakes,
       time: this.model.state.time,
-      isMistakesLeft: this.model.isMistakesLeft,
-      isTimeLeft: this.model.isTimeLeft
-    });
+    }));
   }
 
   tick() {
