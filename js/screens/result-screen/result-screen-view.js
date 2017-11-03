@@ -1,6 +1,6 @@
 import BaseScreenView from '../../utils/view';
 import gameLogo from '../../components/game-logo';
-import gameData from '../../data/game-data';
+import GameData from '../../data/game-data';
 import countScore from '../../utils/count-score';
 
 const failTimeoutTemplate = `
@@ -16,7 +16,7 @@ const failMistakesTemplate = `
 `;
 
 const successTemplate = (data) => {
-  const time = gameData.START_TIME - data.time;
+  const time = GameData.START_TIME - data.time;
   const answersArray = data.answers.split(``);
   const fastAnswers = answersArray.filter((answer) => {
     return answer === `2`;
@@ -48,7 +48,7 @@ class ResultScreenView extends BaseScreenView {
   }
 
   get currentResultTemplate() {
-    if (this.data.mistakes > gameData.MAX_MISTAKES) {
+    if (this.data.mistakes > GameData.MAX_MISTAKES) {
       return failMistakesTemplate;
     } else if (this.data.time === 0) {
       return failTimeoutTemplate;

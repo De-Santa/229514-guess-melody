@@ -1,6 +1,7 @@
 import welcomeScreen from './screens/welcome-screen/welcome-screen';
-import gameScreen from './screens/game-screen/game-screen';
+import GameScreen from './screens/game-screen/game-screen';
 import resultScreen from './screens/result-screen/result-screen';
+import Loader from './loader';
 
 const ControllerId = {
   WELCOME: ``,
@@ -9,13 +10,7 @@ const ControllerId = {
 };
 
 export default class Application {
-  static init() {
-    Application.routes = {
-      [ControllerId.WELCOME]: welcomeScreen,
-      [ControllerId.GAME]: gameScreen,
-      [ControllerId.RESULT]: resultScreen
-    };
-
+  static async init() {
     const hashChangeHandler = () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, data] = hashValue.split(`?`);
@@ -23,7 +18,18 @@ export default class Application {
     };
 
     window.onhashchange = hashChangeHandler;
-    hashChangeHandler();
+
+    try {
+      const questions = await Loader.loadQuestions();
+      Application.routes = {
+        [ControllerId.WELCOME]: welcomeScreen,
+        [ControllerId.GAME]: new GameScreen(questions),
+        [ControllerId.RESULT]: resultScreen
+      };
+      hashChangeHandler();
+    } catch (e) {
+      alert('бляяя');
+    }
   }
 
   static changeHash(id, data) {

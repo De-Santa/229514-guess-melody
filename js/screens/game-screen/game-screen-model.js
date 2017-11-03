@@ -1,27 +1,26 @@
-import gameLevels from '../../data/game-levels';
-import gameData from '../../data/game-data';
+import GameData from '../../data/game-data';
 
-const answerCodes = {
+const AnswerCodes = {
   FAST: 2,
   SLOW: 1,
   WRONG: 0,
 };
 
 class GameScreenModel {
-  constructor(state) {
-    this.state = state;
+  constructor(questions) {
+    this.questions = questions;
   }
 
   get levelData() {
-    return gameLevels[this.state.currentLevel];
+    return this.questions[this.state.currentLevel];
   }
 
   get isLastLevel() {
-    return this.state.currentLevel === gameLevels.length - 1;
+    return this.state.currentLevel === this.questions.length - 1;
   }
 
   get isMistakesLeft() {
-    return this.state.mistakes > gameData.MAX_MISTAKES;
+    return this.state.mistakes > GameData.MAX_MISTAKES;
   }
 
   get isTimeLeft() {
@@ -30,6 +29,10 @@ class GameScreenModel {
 
   get answers() {
     return this.state.answers;
+  }
+
+  init(state) {
+    this.state = state;
   }
 
   update(data) {
@@ -43,9 +46,9 @@ class GameScreenModel {
 
   encodeAnswer(answer) {
     if (answer.isCorrect) {
-      return (answer.isFast ? answerCodes.FAST : answerCodes.SLOW);
+      return (answer.isFast ? AnswerCodes.FAST : AnswerCodes.SLOW);
     }
-    return answerCodes.WRONG;
+    return AnswerCodes.WRONG;
   }
 
   get answersString() {
@@ -53,7 +56,7 @@ class GameScreenModel {
   }
 
   onAnswer(isCorrect) {
-    const isFast = this.state.currentLevelTime <= gameData.FAST_ANSWER_MAX_TIME;
+    const isFast = this.state.currentLevelTime <= GameData.FAST_ANSWER_MAX_TIME;
     this.update({
       answers: this.state.answers.concat([
         this.encodeAnswer({isCorrect, isFast})

@@ -6,8 +6,8 @@ const createAnswers = (answers) => {
       <div class="main-answer-wrapper">
         <input class="main-answer-r" type="radio" id="answer-${index + 1}" name="answer" value="${answer.artist}" />
         <label class="main-answer" for="${answer.artist}">
-          <img class="main-answer-preview" src="${answer.image}" alt="${answer.artist}" width="134" height="134" />
-            ${answer.artist}
+          <img class="main-answer-preview" src="${answer.image.url}" alt="${answer.title}" width="134" height="134" />
+            ${answer.title}
          </label>
        </div>
     `.trim();
@@ -23,11 +23,11 @@ class ArtistLevel extends BaseScreenView {
   get template() {
     return `
       <div class="main-wrap">
-        <h2 class="title main-title">Кто исполняет эту песню?</h2>
+        <h2 class="title main-title">${this.levelData.question}</h2>
         <div class="player-wrapper">
           <div class="player">
             <audio controls>
-              <source src="${this.levelData.audio}">
+              <source src="${this.levelData.src}">
             </audio>
             <button class="player-control player-control--pause"></button>
             <div class="player-track">
@@ -47,7 +47,7 @@ class ArtistLevel extends BaseScreenView {
     this.element.addEventListener(`click`, (event) => {
       if (event.target.className === `main-answer`) {
         const answerIndex = answerButtons.indexOf(event.target);
-        this.onAnswer(this.levelData.answers[answerIndex].correctAnswer);
+        this.onAnswer(this.levelData.answers[answerIndex].isCorrect);
       }
     });
   }

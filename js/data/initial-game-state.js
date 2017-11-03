@@ -1,7 +1,7 @@
-import gameData from './game-data';
+import GameData from './game-data';
 
 const initialGameState = Object.freeze({
-  time: gameData.START_TIME,
+  time: GameData.START_TIME,
   currentLevelTime: 0,
   mistakes: 0,
   currentLevel: 0,

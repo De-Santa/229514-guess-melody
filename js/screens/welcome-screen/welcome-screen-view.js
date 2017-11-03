@@ -1,6 +1,6 @@
 import BaseScreenView from '../../utils/view';
 import gameLogo from '../../components/game-logo';
-import gameData from '../../data/game-data';
+import GameData from '../../data/game-data';
 
 class WelcomeScreenView extends BaseScreenView {
   constructor() {
@@ -14,8 +14,8 @@ class WelcomeScreenView extends BaseScreenView {
         <button class="main-play">Начать игру</button>
         <h2 class="title main-title">Правила игры</h2>
         <p class="text main-text">
-          Правила просты&nbsp;— за&nbsp;${gameData.START_TIME / 60} минут ответить на все вопросы.<br />
-          Ошибиться можно ${gameData.MAX_MISTAKES} раза.<br />
+          Правила просты&nbsp;— за&nbsp;${GameData.START_TIME / 60} минут ответить на все вопросы.<br />
+          Ошибиться можно ${GameData.MAX_MISTAKES} раза.<br />
           Удачи!
         </p>
       </section>
