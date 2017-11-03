@@ -6,8 +6,12 @@ import Application from '../../application';
 
 
 class GameScreen {
+  constructor(questions) {
+    this.model = new GameScreenModel(questions);
+  }
+
   init() {
-    this.model = new GameScreenModel(initialGameState);
+    this.model.update(initialGameState);
     this.view = new GameScreenView(this.model);
     this.view.onAnswer = this.onAnswer.bind(this);
     switchScreen(this.view);
@@ -46,4 +50,4 @@ class GameScreen {
   }
 }
 
-export default new GameScreen();
+export default GameScreen;

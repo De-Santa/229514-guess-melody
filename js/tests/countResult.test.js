@@ -1,5 +1,5 @@
 import assert from 'assert';
-import countResult from '../helpers/countResult'
+import countResult from '../helpers/count-result';
 
 describe(`countResult function`, () => {
   it(`should return "У вас закончились все попытки. Ничего, повезёт в следующий раз!" message if player has no lives left`, () => {

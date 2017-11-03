@@ -1,7 +1,7 @@
-import gameLevels from '../data/game-levels';
+import GameData from '../data/game-data';
 
 const countScore = (answers) => {
-  if (answers.length < gameLevels.length) {
+  if (answers.length < GameData.ANSWERS_COUNT) {
     return -1;
   }
 

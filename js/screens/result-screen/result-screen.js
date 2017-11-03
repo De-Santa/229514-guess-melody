@@ -8,7 +8,7 @@ class ResultScreen {
     switchScreen(this.view);
 
     this.view.onGameRestart = () => {
-      Application.showWelcome();
+      Application.showGame();
     };
   }
 }
