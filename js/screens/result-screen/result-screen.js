@@ -7,12 +7,6 @@ import countLoosers from '../../utils/count-loosers';
 
 
 class ResultScreen extends BaseScreenView {
-  init(playerStats, allStats) {
-    this.playerStats = playerStats;
-    this.allStats = allStats;
-    switchScreen(this);
-  }
-
   get template() {
     const {time, answers, mistakes} = this.playerStats;
 
@@ -37,6 +31,12 @@ class ResultScreen extends BaseScreenView {
         <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
       </section>
     `.trim();
+  }
+
+  init(playerStats, allStats) {
+    this.playerStats = playerStats;
+    this.allStats = allStats;
+    switchScreen(this);
   }
 
   bind() {

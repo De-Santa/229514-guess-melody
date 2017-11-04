@@ -15,11 +15,6 @@ const failMistakesTemplate = `
 `;
 
 class LooseScreen extends BaseScreenView {
-  init(data) {
-    this.data = data;
-    switchScreen(this);
-  }
-
   get template() {
     return `
       <section class="main main--result">
@@ -32,6 +27,11 @@ class LooseScreen extends BaseScreenView {
 
   get currentResultTemplate() {
     return (this.data.mistakes > GameData.MAX_MISTAKES ? failMistakesTemplate : failTimeoutTemplate);
+  }
+
+  init(data) {
+    this.data = data;
+    switchScreen(this);
   }
 
   bind() {

@@ -27,35 +27,6 @@ class GameScreenView extends BaseScreenView {
     `.trim();
   }
 
-  bind() {
-    this._timer = this.element.querySelector(`.timer-value`);
-    this._timerMins = this.element.querySelector(`.timer-value-mins`);
-    this._timerSecs = this.element.querySelector(`.timer-value-secs`);
-    this._timerLine = this.element.querySelector(`.timer-line`);
-    this._timerLine.setAttribute(`stroke-dasharray`, GameData.START_TIMER_DASHOFFSET);
-    this._mistakesWrap = this.element.querySelector(`.main-mistakes`);
-
-    this.element.addEventListener(`click`, (event) => {
-      if (event.target.classList.contains(`player-control`)) {
-        this.stopActiveAudio();
-
-        if (this._activePlayerButton === event.target) {
-          this._activePlayerButton = null;
-          this._activeAudio = null;
-        } else {
-          event.target.classList.toggle(`player-control--pause`);
-          this._activePlayerButton = event.target;
-          this._activeAudio = event.target.parentNode.querySelector(`audio`);
-          this._activeAudio.play();
-        }
-
-        event.preventDefault();
-      }
-    });
-    this.updateTimer();
-    this.updateLevel();
-  }
-
   stopActiveAudio() {
     if (this._activePlayerButton) {
       this._activePlayerButton.classList.toggle(`player-control--pause`);
@@ -92,6 +63,35 @@ class GameScreenView extends BaseScreenView {
     if (seconds === GameData.START_BLINK_TIME) {
       this._timer.classList.add(`timer-value--finished`);
     }
+  }
+
+  bind() {
+    this._timer = this.element.querySelector(`.timer-value`);
+    this._timerMins = this.element.querySelector(`.timer-value-mins`);
+    this._timerSecs = this.element.querySelector(`.timer-value-secs`);
+    this._timerLine = this.element.querySelector(`.timer-line`);
+    this._timerLine.setAttribute(`stroke-dasharray`, GameData.START_TIMER_DASHOFFSET);
+    this._mistakesWrap = this.element.querySelector(`.main-mistakes`);
+
+    this.element.addEventListener(`click`, (event) => {
+      if (event.target.classList.contains(`player-control`)) {
+        this.stopActiveAudio();
+
+        if (this._activePlayerButton === event.target) {
+          this._activePlayerButton = null;
+          this._activeAudio = null;
+        } else {
+          event.target.classList.toggle(`player-control--pause`);
+          this._activePlayerButton = event.target;
+          this._activeAudio = event.target.parentNode.querySelector(`audio`);
+          this._activeAudio.play();
+        }
+
+        event.preventDefault();
+      }
+    });
+    this.updateTimer();
+    this.updateLevel();
   }
 
   onAnswer() {}

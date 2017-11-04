@@ -34,7 +34,7 @@ export default class Application {
       };
       hashChangeHandler();
     } catch (e) {
-      alert('бляяя');
+      splashScreen.showError(e.message);
     }
   }
 

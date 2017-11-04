@@ -55,6 +55,13 @@ class GameScreenModel {
     return AnswerCodes.WRONG;
   }
 
+  tick() {
+    this.update({
+      time: this.state.time - 1,
+      currentLevelTime: this.state.currentLevelTime + 1
+    });
+  }
+
   onAnswer(isCorrect) {
     const isFast = this.state.currentLevelTime <= GameData.FAST_ANSWER_MAX_TIME;
     this.update({
@@ -63,13 +70,6 @@ class GameScreenModel {
       ]),
       currentLevelTime: 0,
       mistakes: this.state.mistakes + (isCorrect ? 0 : 1)
-    });
-  }
-
-  tick() {
-    this.update({
-      time: this.state.time - 1,
-      currentLevelTime: this.state.currentLevelTime + 1
     });
   }
 }

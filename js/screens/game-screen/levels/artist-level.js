@@ -15,7 +15,7 @@ const createAnswers = (answers) => {
   }).join(``);
 };
 
-class ArtistLevel extends BaseScreenView {  
+class ArtistLevel extends BaseScreenView {
   constructor(levelData) {
     super();
     this.levelData = levelData;
@@ -46,6 +46,6 @@ class ArtistLevel extends BaseScreenView {
   onAnswer() {
 
   }
-};
+}
 
 export default ArtistLevel;

@@ -21,18 +21,6 @@ class GameScreen {
     }, 1000);
   }
 
-  onAnswer(isCorrect) {
-    this.view.stopActiveAudio();
-
-    this.model.onAnswer(true);
-    if (this.model.isLastLevel || this.model.isMistakesLeft) {
-      this.gameOver();
-    } else {
-      this.model.nextLevel();
-      this.view.updateLevel();
-    }
-  }
-
   gameOver() {
     clearTimeout(this._intervalId);
     const data = {
@@ -53,6 +41,18 @@ class GameScreen {
       this.gameOver();
     } else {
       this.view.updateTimer();
+    }
+  }
+
+  onAnswer(isCorrect) {
+    this.view.stopActiveAudio();
+
+    this.model.onAnswer(isCorrect);
+    if (this.model.isLastLevel || this.model.isMistakesLeft) {
+      this.gameOver();
+    } else {
+      this.model.nextLevel();
+      this.view.updateLevel();
     }
   }
 }
