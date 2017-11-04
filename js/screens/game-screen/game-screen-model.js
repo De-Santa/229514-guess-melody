@@ -31,6 +31,10 @@ class GameScreenModel {
     return this.state.answers;
   }
 
+  get dashoffset() {
+    return GameData.START_TIMER_DASHOFFSET / GameData.START_TIME * (GameData.START_TIME - this.state.time);
+  }
+
   init(state) {
     this.state = state;
   }
@@ -49,10 +53,6 @@ class GameScreenModel {
       return (answer.isFast ? AnswerCodes.FAST : AnswerCodes.SLOW);
     }
     return AnswerCodes.WRONG;
-  }
-
-  get answersString() {
-    return this.answers.join(``);
   }
 
   onAnswer(isCorrect) {

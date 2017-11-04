@@ -1,7 +1,8 @@
-import switchScreen from '../../utils/switchScreen';
+import switchScreen from '../../utils/switch-screen';
 import GameScreenView from './game-screen-view';
 import GameScreenModel from './game-screen-model';
 import initialGameState from '../../data/initial-game-state';
+import GameData from '../../data/game-data';
 import Application from '../../application';
 
 
@@ -21,8 +22,9 @@ class GameScreen {
   }
 
   onAnswer(isCorrect) {
-    this.model.onAnswer(isCorrect);
+    this.view.stopActiveAudio();
 
+    this.model.onAnswer(true);
     if (this.model.isLastLevel || this.model.isMistakesLeft) {
       this.gameOver();
     } else {
@@ -33,11 +35,16 @@ class GameScreen {
 
   gameOver() {
     clearTimeout(this._intervalId);
-    Application.showStats(JSON.stringify({
-      answers: this.model.answersString,
+    const data = {
+      answers: this.model.answers,
       mistakes: this.model.state.mistakes,
-      time: this.model.state.time,
-    }));
+      time: GameData.START_TIME - this.model.state.time,
+    };
+    if (data.answers.length === GameData.ANSWERS_COUNT) {
+      Application.showStats(data);
+    } else {
+      Application.showLooseScreen(data);
+    }
   }
 
   tick() {

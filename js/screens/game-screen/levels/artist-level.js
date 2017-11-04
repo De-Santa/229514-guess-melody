@@ -1,4 +1,5 @@
 import BaseScreenView from '../../../utils/view';
+import player from '../../../components/player';
 
 const createAnswers = (answers) => {
   return answers.map((answer, index) => {
@@ -24,17 +25,7 @@ class ArtistLevel extends BaseScreenView {
     return `
       <div class="main-wrap">
         <h2 class="title main-title">${this.levelData.question}</h2>
-        <div class="player-wrapper">
-          <div class="player">
-            <audio controls>
-              <source src="${this.levelData.src}">
-            </audio>
-            <button class="player-control player-control--pause"></button>
-            <div class="player-track">
-              <span class="player-status"></span>
-            </div>
-          </div>
-        </div>
+        ${player(this.levelData.src)}
         <form class="main-list">
         ${createAnswers(this.levelData.answers)}
         </form>
@@ -54,10 +45,6 @@ class ArtistLevel extends BaseScreenView {
 
   onAnswer() {
 
-  }
-
-  handleLevelActions(gameScreen, onAnswer) {
-    
   }
 };
 

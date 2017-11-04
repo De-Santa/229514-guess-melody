@@ -1,4 +1,5 @@
 import BaseScreenView from '../../../utils/view';
+import player from '../../../components/player';
 
 class GenreLevel extends BaseScreenView {
   constructor(levelData) {
@@ -22,17 +23,7 @@ class GenreLevel extends BaseScreenView {
     return answers.map((answer, index) => {
       return `
         <div class="genre-answer">
-          <div class="player-wrapper">
-            <div class="player">
-              <audio>
-                <source src="${answer.src}">
-              </audio>
-              <button class="player-control player-control--play"></button>
-              <div class="player-track">
-                <span class="player-status"></span>
-              </div>
-            </div>
-          </div>
+          ${player(answer.src)}
           <input type="checkbox" name="answer" value="answer-${index + 1}" id="answer-${index + 1}" />
           <label class="genre-answer-check" for="answer-${index + 1}"></label>
         </div>
