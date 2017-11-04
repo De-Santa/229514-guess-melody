@@ -36,7 +36,7 @@ class ArtistLevel extends BaseScreenView {
   bind() {
     const answerButtons = [...this.element.querySelectorAll(`.main-answer`)];
     this.element.addEventListener(`click`, (event) => {
-      if (event.target.className === `main-answer`) {
+      if (event.target.classList.contains(`main-answer`)) {
         const answerIndex = answerButtons.indexOf(event.target);
         this.onAnswer(this.levelData.answers[answerIndex].isCorrect);
       }

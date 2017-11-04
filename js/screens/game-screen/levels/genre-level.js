@@ -36,7 +36,7 @@ class GenreLevel extends BaseScreenView {
     const answerBtn = this.element.querySelector(`.genre-answer-send`);
 
     this.element.addEventListener(`change`, (event) => {
-      if (event.target.name === `answer`) {
+      if (event.target.getAttribute(`name`) === `answer`) {
         answerBtn.disabled = !answerCheckboxes.some((answer) => {
           return answer.checked;
         });
@@ -44,7 +44,7 @@ class GenreLevel extends BaseScreenView {
     });
 
     this.element.addEventListener(`click`, (event) => {
-      if (event.target.className === `genre-answer-send`) {
+      if (event.target.classList.contains(`genre-answer-send`)) {
         const answers = this.levelData.answers;
         const answerIsCorrect = answerCheckboxes.reduce((result, answerCheckbox, i) => {
           const isRequiredGenre = (answers[i].genre === this.levelData.genre);
