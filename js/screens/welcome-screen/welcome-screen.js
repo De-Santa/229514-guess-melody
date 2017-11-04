@@ -1,4 +1,4 @@
-import switchScreen from '../../utils/switchScreen';
+import switchScreen from '../../utils/switch-screen';
 import Application from '../../application';
 import WelcomeScreenView from './welcome-screen-view';
 
