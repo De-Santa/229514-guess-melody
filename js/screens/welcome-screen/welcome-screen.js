@@ -12,6 +12,14 @@ class WelcomeScreen {
       Application.showGame();
     };
   }
+
+  letStart() {
+    this.view.letStart();
+  }
+
+  setInfoText(text) {
+    this.view.setInfoText(text);
+  }
 }
 
 export default new WelcomeScreen();

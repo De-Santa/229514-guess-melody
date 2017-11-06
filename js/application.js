@@ -4,7 +4,9 @@ import splashScreen from './screens/splash-screen/splash-screen';
 import resultScreen from './screens/result-screen/result-screen';
 import looseScreen from './screens/loose-screen/loose-screen';
 import switchScreen from './utils/switch-screen';
+import getAudioUrls from './utils/get-audio-urls';
 import Loader from './loader';
+import audioPreloader from './audio-preloader';
 
 const ControllerId = {
   WELCOME: ``,
@@ -22,8 +24,6 @@ export default class Application {
       Application.changeHash(id);
     };
 
-    window.onhashchange = hashChangeHandler;
-
     try {
       const questions = await Loader.loadQuestions();
       Application.routes = {
@@ -32,7 +32,19 @@ export default class Application {
         [ControllerId.LOOSE]: looseScreen,
         [ControllerId.RESULT]: resultScreen,
       };
+
+      window.onhashchange = hashChangeHandler;
+      Application.showWelcome();
       hashChangeHandler();
+
+      try {
+        const audios = getAudioUrls(questions);
+        await audioPreloader.preloadAudios(audios);
+        Application.routes[ControllerId.WELCOME].setInfoText(``);
+      } catch (e) {
+        Application.routes[ControllerId.WELCOME].setInfoText(`Загрузить все песни не удалось, но можете попробовать сыграть`);
+      }
+      Application.routes[ControllerId.WELCOME].letStart();
     } catch (e) {
       splashScreen.showError(e.message);
     }

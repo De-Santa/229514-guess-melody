@@ -40,6 +40,7 @@ class ArtistLevel extends BaseScreenView {
         const answerIndex = answerButtons.indexOf(event.target);
         this.onAnswer(this.levelData.answers[answerIndex].isCorrect);
       }
+      event.preventDefault();
     });
   }
 

@@ -11,7 +11,8 @@ class WelcomeScreenView extends BaseScreenView {
     return `
       <section id="welcome" class="main main--welcome">
         ${gameLogo}
-        <button class="main-play">Начать игру</button>
+        <button disabled class="main-play">Начать игру</button>
+        <span class="text main-info">Идет загрузка аудиофайлов...</span>
         <h2 class="title main-title">Правила игры</h2>
         <p class="text main-text">
           Правила просты&nbsp;— за&nbsp;${GameData.START_TIME / 60} минут ответить на все вопросы.<br />
@@ -22,9 +23,18 @@ class WelcomeScreenView extends BaseScreenView {
     `.trim();
   }
 
+  setInfoText(text) {
+    this._infoText.textContent = text;
+  }
+
+  letStart() {
+    this._playButton.removeAttribute(`disabled`);
+  }
+
   bind() {
-    const playButton = this.element.querySelector(`.main-play`);
-    playButton.addEventListener(`click`, () => {
+    this._infoText = this.element.querySelector(`.main-info`);
+    this._playButton = this.element.querySelector(`.main-play`);
+    this._playButton.addEventListener(`click`, () => {
       this.onGameStart();
     });
   }

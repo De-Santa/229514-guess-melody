@@ -4,6 +4,7 @@ import timerTemplate from '../../components/timer';
 import GenreLevel from './levels/genre-level';
 import ArtistLevel from './levels/artist-level';
 import GameData from '../../data/game-data';
+import audioPreloader from '../../audio-preloader';
 
 
 const LEVELS = {
@@ -83,8 +84,15 @@ class GameScreenView extends BaseScreenView {
         } else {
           event.target.classList.toggle(`player-control--pause`);
           this._activePlayerButton = event.target;
-          this._activeAudio = event.target.parentNode.querySelector(`audio`);
-          this._activeAudio.play();
+          this._activeAudio = audioPreloader.getAudioFromSrc(event.target.dataset.src);
+          const promise = this._activeAudio.play();
+          // В большинстве браузеров метод play возвращает promise,
+          // если до загрузки аудио вызвать метод pause то у промиса сработает reject
+          // т.к. поведение приложения при этом ожидаемо то просто добавим пустой catch
+          // чтобы в консоль не выводились Uncaught (in promise) DOMException
+          if (promise) {
+            promise.catch(() => {});
+          }
         }
 
         event.preventDefault();

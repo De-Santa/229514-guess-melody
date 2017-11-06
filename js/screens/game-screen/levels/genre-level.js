@@ -51,6 +51,7 @@ class GenreLevel extends BaseScreenView {
           return result && answerCheckbox.checked === isRequiredGenre;
         }, true);
         this.onAnswer(answerIsCorrect);
+        event.preventDefault();
       }
     });
   }
